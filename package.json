@@ -1,0 +1,15 @@
+{
+  "name": "casino-slot",
+  "version": "0.1.0",
+  "description": "Minimal browser-based slot machine demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "author": "Bdotgo17",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  }
+}

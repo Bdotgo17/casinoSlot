@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Casino Slot - Demo</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="container">
+      <h1>Casino Slot Machine</h1>
+      <div class="machine">
+        <div class="reels">
+          <div class="reel" id="reel1">🍒</div>
+          <div class="reel" id="reel2">🍋</div>
+          <div class="reel" id="reel3">🍊</div>
+        </div>
+
+        <div class="controls">
+          <div class="row">
+            <label>Balance: $<span id="balance">100</span></label>
+            <label>Bet: $<input id="bet" type="number" min="1" value="1"></label>
+          </div>
+          <div class="row">
+            <button id="spin">Spin</button>
+            <button id="reset">Reset</button>
+          </div>
+          <div id="message" class="message"></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/src/app.js"></script>
+  </body>
+</html>
