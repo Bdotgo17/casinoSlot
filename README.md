@@ -1,0 +1,2 @@
+# casinoSlot
+slot machine app
