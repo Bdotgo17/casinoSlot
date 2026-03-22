@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casino Slot Machine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="machine">
+    <div class="title">🎰 Casino Slots 🎰</div>
+
+    <div class="credits-display">
+      <span>Credits: <strong id="credits">100</strong></span>
+      <span>Bet: <strong id="bet-display">10</strong></span>
+    </div>
+
+    <div class="reels-container">
+      <div class="reel-wrapper">
+        <div class="reel" id="reel1">
+          <div class="symbol">🍒</div>
+        </div>
+      </div>
+      <div class="reel-wrapper">
+        <div class="reel" id="reel2">
+          <div class="symbol">🍋</div>
+        </div>
+      </div>
+      <div class="reel-wrapper">
+        <div class="reel" id="reel3">
+          <div class="symbol">🍇</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="payline"></div>
+
+    <div class="message" id="message">Press SPIN to play!</div>
+
+    <div class="controls">
+      <button class="btn btn-secondary" id="bet-down">− Bet</button>
+      <button class="btn btn-primary" id="spin-btn">SPIN</button>
+      <button class="btn btn-secondary" id="bet-up">+ Bet</button>
+    </div>
+
+    <div class="paytable">
+      <div class="paytable-title">Pay Table</div>
+      <div class="paytable-row"><span>🍒 🍒 🍒</span><span>×5</span></div>
+      <div class="paytable-row"><span>🍋 🍋 🍋</span><span>×8</span></div>
+      <div class="paytable-row"><span>🍇 🍇 🍇</span><span>×10</span></div>
+      <div class="paytable-row"><span>🔔 🔔 🔔</span><span>×15</span></div>
+      <div class="paytable-row"><span>⭐ ⭐ ⭐</span><span>×20</span></div>
+      <div class="paytable-row"><span>💎 💎 💎</span><span>×50</span></div>
+      <div class="paytable-row"><span>7️⃣ 7️⃣ 7️⃣</span><span>×100</span></div>
+      <div class="paytable-row"><span>Any two alike</span><span>×2</span></div>
+    </div>
+  </div>
+
+  <script src="slot.js"></script>
+</body>
+</html>
