@@ -1,0 +1,327 @@
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #1a0533 0%, #0d001a 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ── Neon header ── */
+header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+header h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffe600;
+  text-shadow:
+    0 0 8px #ffe600,
+    0 0 20px #ff8c00,
+    0 0 40px #ff4500;
+}
+
+header p.subtitle {
+  font-size: 1rem;
+  color: #c084fc;
+  margin-top: 6px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── Machine cabinet ── */
+.machine {
+  background: linear-gradient(160deg, #2d1060 0%, #1a0040 60%, #110030 100%);
+  border: 3px solid #7c3aed;
+  border-radius: 24px;
+  padding: 32px 36px 28px;
+  box-shadow:
+    0 0 40px #7c3aed88,
+    0 4px 60px #00000080,
+    inset 0 0 30px #3b0f8022;
+  max-width: 520px;
+  width: 95vw;
+}
+
+/* ── Credits bar ── */
+.info-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  gap: 12px;
+}
+
+.info-box {
+  background: #0f0020;
+  border: 1px solid #5b21b6;
+  border-radius: 10px;
+  padding: 8px 16px;
+  text-align: center;
+  flex: 1;
+}
+
+.info-box .label {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  margin-bottom: 4px;
+}
+
+.info-box .value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffe600;
+  text-shadow: 0 0 6px #ffe600aa;
+}
+
+/* ── Reels window ── */
+.reels-window {
+  background: #0a0018;
+  border: 3px solid #4c1d95;
+  border-radius: 14px;
+  padding: 10px;
+  margin-bottom: 22px;
+  box-shadow: inset 0 0 20px #00000088;
+  position: relative;
+  overflow: hidden;
+}
+
+/* win-line indicator */
+.reels-window::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ffe60066, #ffe600, #ffe60066, transparent);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.reels {
+  display: flex;
+  gap: 10px;
+}
+
+/* ── Single reel ── */
+.reel {
+  flex: 1;
+  height: 130px;
+  background: #160033;
+  border: 2px solid #6d28d9;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.reel-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+
+.reel-strip .symbol {
+  height: 130px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  user-select: none;
+}
+
+/* spinning blur */
+.reel.spinning .reel-strip {
+  filter: blur(3px);
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bet-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.bet-row .label {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #a78bfa;
+}
+
+.bet-btn {
+  background: #3b0764;
+  border: 1px solid #7c3aed;
+  color: #e9d5ff;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, transform 0.1s;
+}
+.bet-btn:hover { background: #5b21b6; }
+.bet-btn:active { transform: scale(0.92); }
+
+.bet-amount {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffe600;
+  min-width: 38px;
+  text-align: center;
+}
+
+/* ── Spin button ── */
+.spin-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #ffe600 0%, #ff8c00 100%);
+  color: #1a0040;
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px #ff8c0066;
+  transition: filter 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+.spin-btn:hover:not(:disabled) {
+  filter: brightness(1.12);
+  box-shadow: 0 6px 26px #ffe60088;
+  transform: translateY(-2px);
+}
+.spin-btn:active:not(:disabled) { transform: translateY(0) scale(0.97); }
+.spin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Win message ── */
+.win-message {
+  text-align: center;
+  min-height: 32px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #ffe600;
+  text-shadow: 0 0 10px #ffe600;
+  margin-top: 4px;
+  transition: opacity 0.3s;
+}
+
+.win-message.jackpot {
+  font-size: 1.4rem;
+  animation: pulse 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from { text-shadow: 0 0 8px #ffe600, 0 0 16px #ff8c00; }
+  to   { text-shadow: 0 0 20px #ffe600, 0 0 40px #ff4500, 0 0 60px #ff0000; }
+}
+
+/* ── Coin shower ── */
+.coin {
+  position: fixed;
+  top: -40px;
+  font-size: 1.8rem;
+  pointer-events: none;
+  animation: coinFall linear forwards;
+  z-index: 100;
+}
+
+@keyframes coinFall {
+  to { top: 110vh; opacity: 0.2; transform: rotate(720deg); }
+}
+
+/* ── Paytable toggle ── */
+.paytable-toggle {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.paytable-toggle button {
+  background: none;
+  border: none;
+  color: #a78bfa;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.paytable-toggle button:hover { color: #c4b5fd; }
+
+.paytable {
+  display: none;
+  margin-top: 14px;
+  background: #0f0020;
+  border: 1px solid #5b21b6;
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+
+.paytable.open { display: block; }
+
+.paytable h3 {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  margin-bottom: 10px;
+}
+
+.paytable-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 18px;
+}
+
+.pt-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.pt-symbols { font-size: 1.1rem; letter-spacing: 0.05em; }
+.pt-payout  { color: #ffe600; font-weight: 700; margin-left: auto; }
+
+footer {
+  margin-top: 24px;
+  font-size: 0.7rem;
+  color: #6d28d9;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

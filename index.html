@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casino Slots 🎰</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🎰 Casino Slots</h1>
+    <p class="subtitle">Spin to Win!</p>
+  </header>
+
+  <main class="machine">
+
+    <!-- Credits / Win display -->
+    <div class="info-bar">
+      <div class="info-box">
+        <div class="label">Credits</div>
+        <div class="value" id="credits">100</div>
+      </div>
+      <div class="info-box">
+        <div class="label">Last Win</div>
+        <div class="value" id="win-amount">0</div>
+      </div>
+    </div>
+
+    <!-- Reels -->
+    <div class="reels-window">
+      <div class="reels">
+        <div class="reel" id="reel-0">
+          <div class="reel-strip"></div>
+        </div>
+        <div class="reel" id="reel-1">
+          <div class="reel-strip"></div>
+        </div>
+        <div class="reel" id="reel-2">
+          <div class="reel-strip"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Win message -->
+    <div class="win-message" id="win-message"></div>
+
+    <!-- Controls -->
+    <div class="controls">
+
+      <!-- Bet selector -->
+      <div class="bet-row">
+        <span class="label">Bet:</span>
+        <button class="bet-btn" id="bet-down" aria-label="Decrease bet">−</button>
+        <span class="bet-amount" id="bet-amount">2</span>
+        <button class="bet-btn" id="bet-up" aria-label="Increase bet">+</button>
+      </div>
+
+      <!-- Spin -->
+      <button class="spin-btn" id="spin-btn">SPIN</button>
+
+    </div>
+
+    <!-- Pay table -->
+    <div class="paytable-toggle">
+      <button id="paytable-toggle">View pay table ▼</button>
+    </div>
+
+    <div class="paytable" id="paytable">
+      <h3>Pay Table (× your bet)</h3>
+      <div class="paytable-grid">
+        <div class="pt-row"><span class="pt-symbols">7️⃣ 7️⃣ 7️⃣</span><span class="pt-payout">×50 🏆</span></div>
+        <div class="pt-row"><span class="pt-symbols">💎 💎 💎</span><span class="pt-payout">×25</span></div>
+        <div class="pt-row"><span class="pt-symbols">⭐ ⭐ ⭐</span><span class="pt-payout">×15</span></div>
+        <div class="pt-row"><span class="pt-symbols">🔔 🔔 🔔</span><span class="pt-payout">×10</span></div>
+        <div class="pt-row"><span class="pt-symbols">🍇 🍇 🍇</span><span class="pt-payout">×8</span></div>
+        <div class="pt-row"><span class="pt-symbols">🍊 🍊 🍊</span><span class="pt-payout">×6</span></div>
+        <div class="pt-row"><span class="pt-symbols">🍋 🍋 🍋</span><span class="pt-payout">×4</span></div>
+        <div class="pt-row"><span class="pt-symbols">🍒 🍒 🍒</span><span class="pt-payout">×3</span></div>
+        <div class="pt-row"><span class="pt-symbols">🃏 🃏 🃏</span><span class="pt-payout">×2</span></div>
+        <div class="pt-row"><span class="pt-symbols">7️⃣ 7️⃣ ✦</span><span class="pt-payout">×5</span></div>
+        <div class="pt-row"><span class="pt-symbols">💎 💎 ✦</span><span class="pt-payout">×3</span></div>
+        <div class="pt-row"><span class="pt-symbols">⭐ ⭐ ✦</span><span class="pt-payout">×2</span></div>
+        <div class="pt-row"><span class="pt-symbols">🍒 🍒 ✦</span><span class="pt-payout">×1</span></div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>© 2025 Casino Slots &nbsp;·&nbsp; Play Responsibly</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
