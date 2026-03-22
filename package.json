@@ -5,7 +5,12 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node test.js"
+    "dev": "live-server --port=3131 --open=./index.html --watch=.",
+    "test": "node test.js",
+    "deploy:ghpages": "echo \"Deploying to GitHub Pages is handled by GitHub Actions.\""
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   },
   "author": "Bdotgo17",
   "license": "MIT",
