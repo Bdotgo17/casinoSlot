@@ -1,0 +1,565 @@
+/* ── Reset & Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(ellipse at center, #1a0533 0%, #0a0015 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  color: #fff;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.6));
+}
+
+header p {
+  color: #c084fc;
+  font-size: 0.95rem;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+/* ── Casino Machine Frame ────────────────────────────────────────────────────── */
+.machine {
+  background: linear-gradient(180deg, #3d0f6e 0%, #1e0550 60%, #150339 100%);
+  border: 4px solid #7c3aed;
+  border-radius: 24px;
+  padding: 30px 28px 24px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow:
+    0 0 40px rgba(124, 58, 237, 0.5),
+    inset 0 0 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+/* Gold accent top bar */
+.machine::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700);
+  border-radius: 20px 20px 0 0;
+}
+
+/* ── Credits Display ─────────────────────────────────────────────────────────── */
+.credits-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.35);
+  border: 2px solid #6d28d9;
+  border-radius: 12px;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
+.credits-item {
+  text-align: center;
+  flex: 1;
+}
+
+.credits-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #a78bfa;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.credits-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffd700;
+  font-variant-numeric: tabular-nums;
+}
+
+.credits-divider {
+  width: 1px;
+  height: 36px;
+  background: #6d28d9;
+}
+
+/* ── Reels Container ─────────────────────────────────────────────────────────── */
+.reels-container {
+  background: #0d0020;
+  border: 3px solid #4c1d95;
+  border-radius: 14px;
+  padding: 16px 12px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  box-shadow: inset 0 4px 20px rgba(0,0,0,0.6), 0 0 20px rgba(109, 40, 217, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Horizontal win line */
+.reels-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.6), transparent);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* ── Individual Reel ─────────────────────────────────────────────────────────── */
+.reel {
+  width: 96px;
+  height: 96px;
+  background: linear-gradient(180deg, #1e0550, #0d0028);
+  border: 2px solid #7c3aed;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+  transition: border-color 0.3s;
+}
+
+.reel.spinning {
+  border-color: #ffd700;
+  animation: reelGlow 0.15s infinite alternate;
+}
+
+.reel.win {
+  border-color: #ffd700;
+  animation: winPulse 0.5s ease infinite alternate;
+}
+
+.reel-symbol {
+  display: block;
+  line-height: 1;
+  transition: transform 0.1s;
+  user-select: none;
+}
+
+.reel.spinning .reel-symbol {
+  animation: symbolBlur 0.15s linear infinite;
+}
+
+@keyframes reelGlow {
+  from { box-shadow: inset 0 2px 8px rgba(0,0,0,0.5), 0 0 6px rgba(255,215,0,0.3); }
+  to   { box-shadow: inset 0 2px 8px rgba(0,0,0,0.5), 0 0 16px rgba(255,215,0,0.7); }
+}
+
+@keyframes winPulse {
+  from { box-shadow: 0 0 10px rgba(255,215,0,0.5); }
+  to   { box-shadow: 0 0 28px rgba(255,215,0,1); }
+}
+
+@keyframes symbolBlur {
+  0%   { transform: translateY(0)   scale(1); }
+  25%  { transform: translateY(-8px) scale(0.9); }
+  75%  { transform: translateY(8px)  scale(0.9); }
+  100% { transform: translateY(0)   scale(1); }
+}
+
+/* ── Bet Controls ─────────────────────────────────────────────────────────────── */
+.bet-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.bet-controls label {
+  color: #a78bfa;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bet-btn {
+  background: #4c1d95;
+  border: 1px solid #7c3aed;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bet-btn:hover {
+  background: #6d28d9;
+}
+
+#bet-amount {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffd700;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* ── Spin Button ─────────────────────────────────────────────────────────────── */
+.spin-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
+  margin-bottom: 14px;
+}
+
+.spin-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(245, 158, 11, 0.7);
+}
+
+.spin-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.spin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Result Message ──────────────────────────────────────────────────────────── */
+.result-message {
+  text-align: center;
+  min-height: 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fcd34d;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+  transition: opacity 0.3s;
+}
+
+.result-message.big-win {
+  font-size: 1.3rem;
+  color: #ffd700;
+  animation: bigWinFlash 0.4s infinite alternate;
+}
+
+@keyframes bigWinFlash {
+  from { color: #ffd700; }
+  to   { color: #ff8c00; }
+}
+
+/* ── Pay Table ───────────────────────────────────────────────────────────────── */
+.paytable {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid #4c1d95;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  font-size: 0.8rem;
+}
+
+.paytable h3 {
+  text-align: center;
+  color: #a78bfa;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.paytable-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(109, 40, 217, 0.2);
+}
+
+.paytable-row:last-child {
+  border-bottom: none;
+}
+
+.paytable-symbols {
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.paytable-multiplier {
+  color: #ffd700;
+  font-weight: 700;
+}
+
+/* ── Buy Credits Button ──────────────────────────────────────────────────────── */
+.buy-credits-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #7c3aed, #4c1d95);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 2px solid #a78bfa;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
+}
+
+.buy-credits-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.6);
+}
+
+/* ── Shop Modal ──────────────────────────────────────────────────────────────── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  background: linear-gradient(180deg, #2d0857, #150339);
+  border: 3px solid #7c3aed;
+  border-radius: 20px;
+  padding: 28px;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  box-shadow: 0 0 60px rgba(124, 58, 237, 0.6);
+}
+
+.modal-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-align: center;
+  color: #ffd700;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.modal-subtitle {
+  text-align: center;
+  color: #a78bfa;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #a78bfa;
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #fff;
+}
+
+/* Credit packs grid */
+.credit-packs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pack-card {
+  background: rgba(0,0,0,0.35);
+  border: 2px solid #4c1d95;
+  border-radius: 12px;
+  padding: 14px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  position: relative;
+}
+
+.pack-card:hover {
+  border-color: #7c3aed;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+}
+
+.pack-card.selected {
+  border-color: #ffd700;
+  box-shadow: 0 0 16px rgba(255,215,0,0.4);
+}
+
+.pack-card.popular::before {
+  content: 'BEST VALUE';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f59e0b;
+  color: #000;
+  font-size: 0.55rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.pack-emoji {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.pack-credits {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffd700;
+  display: block;
+}
+
+.pack-credits-label {
+  font-size: 0.65rem;
+  color: #a78bfa;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pack-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #34d399;
+  display: block;
+  margin-top: 6px;
+}
+
+/* Shopify Buy Button area */
+#shopify-buy-container {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shopify-buy-frame {
+  width: 100%;
+}
+
+.checkout-info {
+  text-align: center;
+  color: #a78bfa;
+  font-size: 0.75rem;
+  margin-top: 14px;
+}
+
+.checkout-info a {
+  color: #c084fc;
+}
+
+/* Config warning banner */
+.config-warning {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fcd34d;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 16px;
+  display: none;
+}
+
+.config-warning.visible {
+  display: block;
+}
+
+/* ── Toast Notification ──────────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #2d0857;
+  border: 2px solid #7c3aed;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  transition: transform 0.35s cubic-bezier(.175,.885,.32,1.275);
+  z-index: 200;
+  white-space: nowrap;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────────── */
+footer {
+  margin-top: 20px;
+  color: #4c1d95;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  header h1 { font-size: 2rem; }
+  .reel { width: 80px; height: 80px; font-size: 2.8rem; }
+  .credit-packs { grid-template-columns: 1fr 1fr 1fr; }
+}

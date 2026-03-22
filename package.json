@@ -1,0 +1,17 @@
+{
+  "name": "casino-slot",
+  "version": "1.0.0",
+  "description": "A slot machine app with Shopify payment integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node tests/slot-machine.test.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "dotenv": "^16.3.1",
+    "body-parser": "^1.20.3",
+    "crypto": "^1.0.1"
+  }
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casino Slot Machine 🎰</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────────────────── -->
+  <header>
+    <h1>🎰 Casino Slots</h1>
+    <p>Spin &amp; Win – Powered by Shopify</p>
+  </header>
+
+  <!-- ── Slot Machine ─────────────────────────────────────────────────────── -->
+  <main>
+    <div class="machine">
+
+      <!-- Credits / Stats bar -->
+      <div class="credits-panel">
+        <div class="credits-item">
+          <span class="credits-label">Credits</span>
+          <span class="credits-value" id="credits-display">100</span>
+        </div>
+        <div class="credits-divider"></div>
+        <div class="credits-item">
+          <span class="credits-label">Spins</span>
+          <span class="credits-value" id="spins-display">0</span>
+        </div>
+        <div class="credits-divider"></div>
+        <div class="credits-item">
+          <span class="credits-label">Total Won</span>
+          <span class="credits-value" id="wins-display">0</span>
+        </div>
+      </div>
+
+      <!-- Reels -->
+      <div class="reels-container">
+        <div class="reel" id="reel-0">
+          <span class="reel-symbol">7️⃣</span>
+        </div>
+        <div class="reel" id="reel-1">
+          <span class="reel-symbol">7️⃣</span>
+        </div>
+        <div class="reel" id="reel-2">
+          <span class="reel-symbol">7️⃣</span>
+        </div>
+      </div>
+
+      <!-- Bet Controls -->
+      <div class="bet-controls">
+        <label>Bet:</label>
+        <button class="bet-btn" id="bet-decrease" aria-label="Decrease bet">−</button>
+        <span id="bet-amount">10</span>
+        <button class="bet-btn" id="bet-increase" aria-label="Increase bet">+</button>
+        <label>credits</label>
+      </div>
+
+      <!-- Result message -->
+      <div class="result-message" id="result-message" aria-live="polite"></div>
+
+      <!-- Spin button -->
+      <button class="spin-btn" id="spin-btn">SPIN 🎰</button>
+
+      <!-- Pay table -->
+      <div class="paytable">
+        <h3>Pay Table (3 of a Kind)</h3>
+        <div class="paytable-row">
+          <span class="paytable-symbols">🍒🍒🍒</span>
+          <span class="paytable-multiplier">3× bet</span>
+        </div>
+        <div class="paytable-row">
+          <span class="paytable-symbols">🍋🍋🍋</span>
+          <span class="paytable-multiplier">4× bet</span>
+        </div>
+        <div class="paytable-row">
+          <span class="paytable-symbols">🍊🍊🍊</span>
+          <span class="paytable-multiplier">5× bet</span>
+        </div>
+        <div class="paytable-row">
+          <span class="paytable-symbols">🍇🍇🍇</span>
+          <span class="paytable-multiplier">6× bet</span>
+        </div>
+        <div class="paytable-row">
+          <span class="paytable-symbols">⭐⭐⭐</span>
+          <span class="paytable-multiplier">10× bet</span>
+        </div>
+        <div class="paytable-row">
+          <span class="paytable-symbols">💎💎💎</span>
+          <span class="paytable-multiplier">20× bet</span>
+        </div>
+        <div class="paytable-row">
+          <span class="paytable-symbols">7️⃣7️⃣7️⃣</span>
+          <span class="paytable-multiplier">50× bet</span>
+        </div>
+        <div class="paytable-row">
+          <span class="paytable-symbols">🍒🍒 any</span>
+          <span class="paytable-multiplier">2× bet</span>
+        </div>
+      </div>
+
+      <!-- Buy Credits -->
+      <button class="buy-credits-btn" id="buy-credits-btn">
+        💳 Buy More Credits
+      </button>
+
+    </div><!-- /.machine -->
+  </main>
+
+  <!-- ── Shop Modal ────────────────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="shop-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <h2 class="modal-title" id="modal-title">💳 Buy Credits</h2>
+      <p class="modal-subtitle">Choose a pack and checkout securely via Shopify</p>
+
+      <!-- Config warning (shown when Shopify env vars are not set) -->
+      <div class="config-warning" id="shopify-config-warning"></div>
+
+      <!-- Credit packs -->
+      <div class="credit-packs">
+        <div class="pack-card" data-pack-id="starter" onclick="selectPack('starter')">
+          <span class="pack-emoji">🎰</span>
+          <span class="pack-credits">100</span>
+          <span class="pack-credits-label">credits</span>
+          <span class="pack-price">$0.99</span>
+        </div>
+        <div class="pack-card popular selected" data-pack-id="value" onclick="selectPack('value')">
+          <span class="pack-emoji">💰</span>
+          <span class="pack-credits">500</span>
+          <span class="pack-credits-label">credits</span>
+          <span class="pack-price">$3.99</span>
+        </div>
+        <div class="pack-card" data-pack-id="mega" onclick="selectPack('mega')">
+          <span class="pack-emoji">💎</span>
+          <span class="pack-credits">1000</span>
+          <span class="pack-credits-label">credits</span>
+          <span class="pack-price">$6.99</span>
+        </div>
+      </div>
+
+      <!-- Shopify Buy Button renders here -->
+      <div id="shopify-buy-container">
+        <p style="color:#6d28d9;text-align:center;font-size:0.85rem">Loading payment…</p>
+      </div>
+
+      <p class="checkout-info">
+        Payments processed securely by <strong>Shopify</strong>.<br>
+        Credits are added to your session automatically after purchase.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Toast ─────────────────────────────────────────────────────────────── -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <footer>
+    <p>18+ Only · Play Responsibly · This is a demo application</p>
+  </footer>
+
+  <!-- ── Scripts ───────────────────────────────────────────────────────────── -->
+  <script src="/js/slot-machine.js"></script>
+  <script src="/js/shopify.js"></script>
+  <script>
+    // Expose showToast globally so both modules can use it
+    function showToast(msg, duration = 3000) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), duration);
+    }
+  </script>
+
+</body>
+</html>
