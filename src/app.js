@@ -8,7 +8,8 @@ const spinBtn = document.getElementById('spin');
 const resetBtn = document.getElementById('reset');
 const msgEl = document.getElementById('message');
 
-let balance = 100;
+// Use virtual coins only. No real money.
+let balance = 1000;
 let spinning = false;
 
 function randInt(max){ return Math.floor(Math.random()*max); }
@@ -16,7 +17,7 @@ function randInt(max){ return Math.floor(Math.random()*max); }
 function spinOnce(){
   if(spinning) return;
   const bet = Math.max(1, Math.floor(Number(betEl.value) || 1));
-  if(bet > balance){ msgEl.textContent = 'Insufficient balance for that bet.'; return; }
+  if(bet > balance){ msgEl.textContent = 'Insufficient coins for that bet.'; return; }
 
   spinning = true;
   balance -= bet;
@@ -45,7 +46,7 @@ function spinOnce(){
 }
 
 function evaluate(results, bet){
-  // payouts: three of a kind x10, two of a kind x2, star (⭐) jackpot x20
+  // payouts (in virtual coins): three of a kind x10, two of a kind x2, star (⭐) jackpot x20
   const counts = {};
   results.forEach(s=>counts[s]=(counts[s]||0)+1);
   let payout = 0;
